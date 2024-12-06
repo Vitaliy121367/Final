@@ -1,36 +1,35 @@
 #pragma once
 #include <iostream>
 #include <fstream>
+#include <ctime>
 #include "Date.h"
 using namespace std;
 namespace Rooms {
 	class Room
 	{
-		int identifier;
+	protected:
+		long identifier;
 		int num;
 		int number;
-		Date race;
+		Date inhabited;
 		int days;
 		double priceDay;
-		bool exitToTheSea;
 	public:
 		Room();
-		Room(int identifier, int num, int number, Date race, int days, double priceDay, bool exitToTheSea);
+		Room(int num, int number, Date inhabited, int days, double priceDay);
 		virtual ~Room();
 
-		int getIdentifier()const;
+		long getIdentifier()const;
 		int getNum()const;
 		int getNumber()const;
-		Date getRace()const;
+		Date getInhabited()const;
 		int getDays()const;
 		double getPriceDay()const;
-		bool getExitToTheSea()const;
 
 		void setDays(int days);
-		void setPriceDay(bool exitToTheSea);
+		void setPriceDay(double priceDay);
 
 		virtual void showInfo()const = 0;
-		virtual void showFullPrice()const = 0;
-		virtual void load(ifstream& file) = 0;
+		virtual double getFullPrice()const = 0;
 	};
 }
