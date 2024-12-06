@@ -11,7 +11,7 @@ namespace Rooms
 		bool exitToSea;
 	public:
 		StandardRoom();
-		StandardRoom(int num, int number, Date inhabited, int days, double priceDay, bool exitToSea);
+		StandardRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea);
 	
 		bool getExitToSea()const;
 

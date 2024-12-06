@@ -5,7 +5,7 @@ Rooms::StandardRoom::StandardRoom()
 	exitToSea = 0;
 }
 
-Rooms::StandardRoom::StandardRoom(int num, int number, Date inhabited, int days, double priceDay, bool exitToSea):Room(num, number, inhabited, days, priceDay)
+Rooms::StandardRoom::StandardRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea):Room(id, num, number, inhabited, days, priceDay)
 {
 	this->exitToSea = exitToSea;
 }
@@ -17,6 +17,7 @@ bool Rooms::StandardRoom::getExitToSea() const
 
 void Rooms::StandardRoom::showInfo() const
 {
+	cout << "Id: " << id << endl;
 	cout << "Num: " << num << endl;
 	cout<< "Number: "<< number << endl;
 	cout << "Inhabited: " << inhabited << endl;

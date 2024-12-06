@@ -2,7 +2,7 @@
 
 Rooms::Room::Room()
 {
-    identifier = rand() * pow(10, 10) + rand();
+    id = 0;
     num = 0;
     number = 0;
     inhabited = Date();
@@ -10,9 +10,9 @@ Rooms::Room::Room()
     priceDay = 0.0;
 }
 
-Rooms::Room::Room(int num, int number, Date inhabited, int days, double priceDay)
+Rooms::Room::Room(int id, int num, int number, Date inhabited, int days, double priceDay)
 {
-    identifier = rand() * pow(10, 10) + rand();
+    this->id = id;
     this->num = num;
     this->number = number;
     this->inhabited = inhabited;
@@ -24,9 +24,9 @@ Rooms::Room::~Room()
 {
 }
 
-long Rooms::Room::getIdentifier() const
+long Rooms::Room::getId() const
 {
-    return identifier;
+    return 0;
 }
 
 int Rooms::Room::getNum() const
