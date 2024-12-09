@@ -9,11 +9,13 @@ namespace Rooms
 	class SemiLuxRoom : public StandardRoom
 	{
 		double sqBalcony;
+		bool miniBar;
 	public:
 		SemiLuxRoom();
-		SemiLuxRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony);
+		SemiLuxRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar);
 
 		double getSqBalcony()const;
+		bool getMiniBar()const;
 
 		void setSqBalcony(double sqBalcony);
 
