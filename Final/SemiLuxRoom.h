@@ -8,6 +8,7 @@ namespace Rooms
 {
 	class SemiLuxRoom : public StandardRoom
 	{
+	protected:
 		double sqBalcony;
 		bool miniBar;
 	public:
