@@ -6,7 +6,7 @@ Rooms::SemiLuxRoom::SemiLuxRoom()
     sqBalcony = 0;
 }
 
-Rooms::SemiLuxRoom::SemiLuxRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar):StandardRoom(id, num, number, inhabited, days, priceDay, exitToSea)
+Rooms::SemiLuxRoom::SemiLuxRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar):StandardRoom(id, num, free, number, inhabited, days, priceDay, exitToSea)
 {
     this->sqBalcony = sqBalcony;
     this->miniBar = miniBar;
@@ -28,20 +28,6 @@ void Rooms::SemiLuxRoom::setSqBalcony(double sqBalcony)
     {
         this->sqBalcony = sqBalcony;
     }
-}
-
-void Rooms::SemiLuxRoom::showInfo() const
-{
-    Rooms::StandardRoom::showInfo();
-    if (sqBalcony==0)
-    {
-        cout << "Square Balcony: no balcony" << endl;
-    }
-    else 
-    {
-        cout << "Square Balcony: " << sqBalcony << " m^2" << endl;
-    }
-    cout << "Mini Bar: " << (miniBar ? "Yes" : "No") << endl;
 }
 
 double Rooms::SemiLuxRoom::getFullPrice() const
@@ -69,4 +55,37 @@ double Rooms::SemiLuxRoom::getFullPrice() const
         fullPrice += fullPrice * 0.15;
     }
     return fullPrice;
+}
+
+void Rooms::SemiLuxRoom::showInfo() const
+{
+    cout << "\tSemiLuxRoom" << endl;
+    cout << "Id: " << id << endl;
+    cout << "Num: " << num << endl;
+    cout << "Number: " << number << endl;
+    cout << "Inhabited: " << inhabited << endl;
+    cout << "Evicted: " << inhabited + days << endl;
+    cout << "Days: " << days << endl;
+    cout << "Price day: " << priceDay << endl;
+    cout << "Exit To Sea: " << (getExitToSea() ? "Yes" : "No") << endl;
+    cout << "Square Balcony: " << sqBalcony << " m^2" << endl;
+    cout << "Mini Bar: " << (miniBar ? "Yes" : "No") << endl;
+    cout << "Free: " << (free ? "Yes" : "No") << endl;
+}
+
+ostream& Rooms::operator<<(ostream& os, const SemiLuxRoom& r)
+{
+    os << "\tSemiLuxRoom" << endl
+        << "Id: " << r.id << endl
+        << "Num: " << r.num << endl
+        << "Number: " << r.number << endl
+        << "Inhabited: " << r.inhabited << endl
+        << "Evicted: " << r.inhabited + r.days << endl
+        << "Days: " << r.days << endl
+        << "Price day: " << r.priceDay << endl
+        << "Exit To Sea: " << (r.getExitToSea() ? "Yes" : "No") << endl
+        << "Square Balcony: " << r.sqBalcony << " m^2" << endl
+        << "Mini Bar: " << (r.miniBar ? "Yes" : "No") << endl
+        << "Free: " << (r.free ? "Yes" : "No") << endl;
+    return os;
 }

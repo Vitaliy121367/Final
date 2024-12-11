@@ -11,26 +11,30 @@ namespace Rooms {
 	protected:
 		int id;
 		int num;
+		bool free;
 		int number;
 		Date inhabited;
 		int days;
 		double priceDay;
 	public:
 		Room();
-		Room(int id, int num, int number, Date inhabited, int days, double priceDay);
+		Room(int id, int num, bool free, int number, Date inhabited, int days, double priceDay);
 		virtual ~Room();
 
 		long getId()const;
 		int getNum()const;
+		int getFree()const;
 		int getNumber()const;
 		Date getInhabited()const;
 		int getDays()const;
 		double getPriceDay()const;
 
+		void setFree(bool free);
 		void setDays(int days);
 		void setPriceDay(double priceDay);
 
-		virtual void showInfo()const = 0;
 		virtual double getFullPrice()const = 0;
+		virtual void showInfo()const = 0;
+		virtual void load(ifstream& file) = 0;
 	};
 }

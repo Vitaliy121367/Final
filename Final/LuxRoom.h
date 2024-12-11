@@ -13,13 +13,33 @@ namespace Rooms
 		double wifiSpeed;
 	public:
 		LuxRoom();
-		LuxRoom(int id, int num, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed);
+		LuxRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed);
 
 		double getWifiSpeed()const;
 
 		void setWifiSpeed(double wifiSpeed);
 		
-		virtual void showInfo()const override;
+		friend ostream& operator << (ostream& os, const LuxRoom& r);
 		virtual double getFullPrice()const override;
+		virtual void showInfo()const override;
+		virtual void load(ifstream& file)override
+		{
+			file >> id;
+			file >> num;
+			file >> free;
+			file >> number;
+			int d = 0, m = 0, y = 0;
+			file >> d >> m >> y;
+			inhabited.setYear(y);
+			inhabited.setMonth(m);
+			inhabited.setDay(d);
+			file >> days;
+			file >> priceDay;
+			file >> exitToSea;
+			file >> sqBalcony;
+			file >> miniBar;
+			file >> wifiSpeed;
+			file.get();
+		}
 	};
 }
