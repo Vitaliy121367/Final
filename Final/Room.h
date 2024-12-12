@@ -33,8 +33,11 @@ namespace Rooms {
 		void setDays(int days);
 		void setPriceDay(double priceDay);
 
+		virtual bool isEmpty()const = 0;
+		virtual void infoFile(ofstream& file)const = 0;
+
 		virtual double getFullPrice()const = 0;
 		virtual void showInfo()const = 0;
-		virtual void load(ifstream& file) = 0;
+		virtual void load(ifstream& file) = 0; 
 	};
 }

@@ -18,7 +18,10 @@ namespace Rooms
 		double getWifiSpeed()const;
 
 		void setWifiSpeed(double wifiSpeed);
-		
+
+		virtual bool isEmpty()const override;
+		virtual void infoFile(ofstream& file)const override;
+
 		friend ostream& operator << (ostream& os, const LuxRoom& r);
 		virtual double getFullPrice()const override;
 		virtual void showInfo()const override;

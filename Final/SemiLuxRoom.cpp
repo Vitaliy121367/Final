@@ -30,6 +30,26 @@ void Rooms::SemiLuxRoom::setSqBalcony(double sqBalcony)
     }
 }
 
+bool Rooms::SemiLuxRoom::isEmpty() const
+{
+    return id != 0 && num != 0 && number != 0 && days != 0 && priceDay != 0;
+}
+
+void Rooms::SemiLuxRoom::infoFile(ofstream& file)const
+{
+    file << "SemiLuxRoom" << endl;
+    file << id << endl;
+    file << num << endl;
+    file << free << endl;
+    file << number << endl;
+    file << inhabited.getDay() << " " << inhabited.getMonth() << " " << inhabited.getYear() << " " << endl;
+    file << days << endl;
+    file << priceDay << endl;
+    file << exitToSea << endl;
+    file << sqBalcony << endl;
+    file << miniBar << endl << endl;
+}
+
 double Rooms::SemiLuxRoom::getFullPrice() const
 {
     double fullPrice = 0;

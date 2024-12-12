@@ -16,6 +16,9 @@ namespace Rooms
 	
 		bool getExitToSea()const;
 
+		virtual bool isEmpty()const override;
+		virtual void infoFile(ofstream& file)const override;
+
 		friend ostream& operator << (ostream& os, const StandardRoom& r);
 		virtual double getFullPrice()const override; 
 		virtual void showInfo()const override;

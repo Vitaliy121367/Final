@@ -2,12 +2,12 @@
 
 Rooms::Hotels::Hotels()
 {
-	Room* p = nullptr;
 	ifstream file("hotelRoom.txt");
 	if (file.is_open()) {
 		string type = "";
 		while (!file.eof())
 		{
+			Room* p = nullptr;
 			file >> type;
 			file.get();
 			if (type == "StandardRoom")
@@ -45,10 +45,7 @@ Rooms::Hotels::Hotels()
 
 Rooms::Hotels::~Hotels()
 {
-	for (int i = 0; i < Hotel.size(); i++)
-	{
-		delete Hotel[i];
-	}
+
 }
 
 void Rooms::Hotels::addRoom(Room* obj)
@@ -58,6 +55,22 @@ void Rooms::Hotels::addRoom(Room* obj)
 		Hotel.push_back(obj);
 		if (obj->getFree() == 1) { freeRoom.push_back(obj); }
 		else { unfreeRoom.push_back(obj); }
+	}
+}
+
+void Rooms::Hotels::printToFile()
+{
+	ofstream file("hotelRoom.txt");
+	if (file.is_open()) 
+	{
+		for (int i = 0; i < Hotel.size(); i++)
+		{
+			if (Hotel[i]->isEmpty())
+			{
+				Hotel[i]->infoFile(file);
+			}
+		}
+		file.close();
 	}
 }
 

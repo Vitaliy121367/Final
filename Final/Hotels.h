@@ -17,6 +17,7 @@ namespace Rooms
 		~Hotels();
 
 		void addRoom(Room* obj);
+		void printToFile();
 		void showListHotel()const;
 		void showListFreeRoom()const;
 		void showListUnfreeRoom()const;

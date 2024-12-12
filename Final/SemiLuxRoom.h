@@ -20,6 +20,9 @@ namespace Rooms
 
 		void setSqBalcony(double sqBalcony);
 
+		virtual bool isEmpty()const override;
+		virtual void infoFile(ofstream& file)const override;
+
 		friend ostream& operator << (ostream& os, const SemiLuxRoom& r);
 		virtual double getFullPrice()const override;
 		virtual void showInfo()const override;

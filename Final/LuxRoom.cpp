@@ -20,6 +20,27 @@ void Rooms::LuxRoom::setWifiSpeed(double wifiSpeed)
     this->wifiSpeed = wifiSpeed;
 }
 
+bool Rooms::LuxRoom::isEmpty() const
+{
+    return id != 0 && num != 0 && number != 0 && days != 0 && priceDay != 0;
+}
+
+void Rooms::LuxRoom::infoFile(ofstream& file)const
+{
+    file << "LuxRoom" << endl;
+    file << id << endl;
+    file << num << endl;
+    file << free << endl;
+    file << number << endl;
+    file << inhabited.getDay() << " " << inhabited.getMonth() << " " << inhabited.getYear() << " " << endl;
+    file << days << endl;
+    file << priceDay << endl;
+    file << exitToSea << endl;
+    file << sqBalcony << endl;
+    file << miniBar << endl;
+    file << wifiSpeed << endl << endl;
+}
+
 double Rooms::LuxRoom::getFullPrice() const
 {
     double fullPrice = 0;
