@@ -13,7 +13,7 @@ namespace Rooms
 		double wifiSpeed;
 	public:
 		LuxRoom();
-		LuxRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed);
+		LuxRoom(int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed);
 
 		double getWifiSpeed()const;
 
@@ -23,11 +23,12 @@ namespace Rooms
 		virtual void infoFile(ofstream& file)const override;
 
 		friend ostream& operator << (ostream& os, const LuxRoom& r);
+		friend istream& operator >> (istream& is, LuxRoom& r);
+
 		virtual double getFullPrice()const override;
 		virtual void showInfo()const override;
 		virtual void load(ifstream& file)override
 		{
-			file >> id;
 			file >> num;
 			file >> free;
 			file >> number;

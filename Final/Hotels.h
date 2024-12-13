@@ -10,17 +10,15 @@ namespace Rooms
 	class Hotels
 	{
 		vector<Room*>Hotel;
-		vector<Room*>freeRoom;
-		vector<Room*>unfreeRoom;
 	public:
 		Hotels();
 		~Hotels();
 
 		void addRoom(Room* obj);
+		void delRoom(int i);
+		void editRoom(int i);
 		void printToFile();
 		void showListHotel()const;
-		void showListFreeRoom()const;
-		void showListUnfreeRoom()const;
 	};
 }
 

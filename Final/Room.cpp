@@ -2,32 +2,30 @@
 
 Rooms::Room::Room()
 {
-    id = 0;
+    id = counter;
     num = 0;
+    free = 0;
     number = 0;
     inhabited = Date();
     days = 0;
     priceDay = 0.0;
+    counter++;
 }
 
-Rooms::Room::Room(int id, int num, bool free, int number, Date inhabited, int days, double priceDay)
+Rooms::Room::Room(int num, bool free, int number, Date inhabited, int days, double priceDay)
 {
-    this->id = id;
+    id = counter;
     this->num = num;
     this->free = free;
     this->number = number;
     this->inhabited = inhabited;
     this->days = days;
     this->priceDay = priceDay;
+    counter++;
 }
 
 Rooms::Room::~Room()
 {
-}
-
-long Rooms::Room::getId() const
-{
-    return id;
 }
 
 int Rooms::Room::getNum() const
@@ -77,3 +75,5 @@ void Rooms::Room::setPriceDay(double priceDay)
 {
     this->priceDay = priceDay;
 }
+
+int Rooms::Room::counter = 1;

@@ -5,7 +5,7 @@ Rooms::StandardRoom::StandardRoom()
 	exitToSea = 0;
 }
 
-Rooms::StandardRoom::StandardRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea):Room(id, num, free, number, inhabited, days, priceDay)
+Rooms::StandardRoom::StandardRoom(int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea):Room(num, free, number, inhabited, days, priceDay)
 {
 	this->exitToSea = exitToSea;
 }
@@ -23,7 +23,6 @@ bool Rooms::StandardRoom::isEmpty() const
 void Rooms::StandardRoom::infoFile(ofstream& file)const
 {
 	file << "StandardRoom" << endl;
-	file << id << endl;
 	file << num << endl;
 	file << free << endl;
 	file << number << endl;
@@ -75,4 +74,19 @@ ostream& Rooms::operator<<(ostream& os, const StandardRoom& r)
 		<< "Price day: " << r.priceDay << endl
 		<< "Exit To Sea: " << r.exitToSea << endl << endl;
 	return os;
+}
+
+istream& Rooms::operator>>(istream& is, StandardRoom& r)
+{
+	cout << "\tStandardRoom" << endl
+		<< "Id: " << r.id << endl
+		<< "Num: " << r.num << endl
+		<< "Free: " << r.free << endl
+		<< "Number: " << r.number << endl
+		<< "Inhabited: " << r.inhabited << endl
+		<< "Days: " << r.days << endl
+		<< "Price day: " << r.priceDay << endl
+		<< "Exit To Sea: " << r.exitToSea << endl << endl;
+	is >> r.num >> r.free >> r.number >> r.inhabited >> r.days >> r.priceDay >> r.exitToSea;
+	return is;
 }

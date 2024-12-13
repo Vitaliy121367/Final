@@ -5,7 +5,7 @@ Rooms::LuxRoom::LuxRoom()
     wifiSpeed = 0;
 }
 
-Rooms::LuxRoom::LuxRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed):SemiLuxRoom(id, num, free, number, inhabited, days, priceDay, exitToSea, sqBalcony, miniBar)
+Rooms::LuxRoom::LuxRoom(int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar, double wifiSpeed):SemiLuxRoom(num, free, number, inhabited, days, priceDay, exitToSea, sqBalcony, miniBar)
 {
     this->wifiSpeed = wifiSpeed;
 }
@@ -28,7 +28,6 @@ bool Rooms::LuxRoom::isEmpty() const
 void Rooms::LuxRoom::infoFile(ofstream& file)const
 {
     file << "LuxRoom" << endl;
-    file << id << endl;
     file << num << endl;
     file << free << endl;
     file << number << endl;
@@ -105,4 +104,22 @@ ostream& Rooms::operator<<(ostream& os, const LuxRoom& r)
         << "Wi-Fi Speed: " << r.wifiSpeed << " mbps/s\n"
         << "Free: " << (r.free ? "Yes" : "No") << endl;
     return os;
+}
+
+istream& Rooms::operator>>(istream& is, LuxRoom& r)
+{
+    cout << "\tStandardRoom" << endl
+        << "Id: " << r.id << endl
+        << "Num: " << r.num << endl
+        << "Free: " << r.free << endl
+        << "Number: " << r.number << endl
+        << "Inhabited: " << r.inhabited << endl
+        << "Days: " << r.days << endl
+        << "Price day: " << r.priceDay << endl
+        << "Exit To Sea: " << r.exitToSea << endl
+        << "Square Balcony: " << r.sqBalcony << " m^2" << endl
+        << "Mini Bar: " << r.miniBar << endl
+        << "Wifi Speed: " << r.wifiSpeed << endl << endl;
+    is >> r.num >> r.free >> r.number >> r.inhabited >> r.days >> r.priceDay >> r.exitToSea >> r.sqBalcony >> r.miniBar >> r.wifiSpeed;
+    return is;
 }

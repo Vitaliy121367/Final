@@ -9,6 +9,7 @@ namespace Rooms {
 	class Room
 	{
 	protected:
+		static int counter;
 		int id;
 		int num;
 		bool free;
@@ -18,10 +19,9 @@ namespace Rooms {
 		double priceDay;
 	public:
 		Room();
-		Room(int id, int num, bool free, int number, Date inhabited, int days, double priceDay);
+		Room(int num, bool free, int number, Date inhabited, int days, double priceDay);
 		virtual ~Room();
 
-		long getId()const;
 		int getNum()const;
 		int getFree()const;
 		int getNumber()const;

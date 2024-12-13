@@ -12,7 +12,7 @@ namespace Rooms
 		bool exitToSea;
 	public:
 		StandardRoom();
-		StandardRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea);
+		StandardRoom(int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea);
 	
 		bool getExitToSea()const;
 
@@ -20,11 +20,11 @@ namespace Rooms
 		virtual void infoFile(ofstream& file)const override;
 
 		friend ostream& operator << (ostream& os, const StandardRoom& r);
+		friend istream& operator >> (istream& is, StandardRoom& r);
 		virtual double getFullPrice()const override; 
 		virtual void showInfo()const override;
 		virtual void load(ifstream& file)override 
 		{
-			file >> id;
 			file >> num;
 			file >> free;
 			file >> number; 

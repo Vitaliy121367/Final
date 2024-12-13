@@ -6,7 +6,7 @@ Rooms::SemiLuxRoom::SemiLuxRoom()
     sqBalcony = 0;
 }
 
-Rooms::SemiLuxRoom::SemiLuxRoom(int id, int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar):StandardRoom(id, num, free, number, inhabited, days, priceDay, exitToSea)
+Rooms::SemiLuxRoom::SemiLuxRoom(int num, bool free, int number, Date inhabited, int days, double priceDay, bool exitToSea, double sqBalcony, bool miniBar):StandardRoom(num, free, number, inhabited, days, priceDay, exitToSea)
 {
     this->sqBalcony = sqBalcony;
     this->miniBar = miniBar;
@@ -38,7 +38,6 @@ bool Rooms::SemiLuxRoom::isEmpty() const
 void Rooms::SemiLuxRoom::infoFile(ofstream& file)const
 {
     file << "SemiLuxRoom" << endl;
-    file << id << endl;
     file << num << endl;
     file << free << endl;
     file << number << endl;
@@ -106,6 +105,23 @@ ostream& Rooms::operator<<(ostream& os, const SemiLuxRoom& r)
         << "Exit To Sea: " << (r.getExitToSea() ? "Yes" : "No") << endl
         << "Square Balcony: " << r.sqBalcony << " m^2" << endl
         << "Mini Bar: " << (r.miniBar ? "Yes" : "No") << endl
-        << "Free: " << (r.free ? "Yes" : "No") << endl;
+        << "Free: " << (r.free ? "Yes" : "No") << endl << endl;
     return os;
+}
+
+istream& Rooms::operator>>(istream& is, SemiLuxRoom& r)
+{
+    cout << "\tStandardRoom" << endl
+        << "Id: " << r.id << endl
+        << "Num: " << r.num << endl
+        << "Free: " << r.free << endl
+        << "Number: " << r.number << endl
+        << "Inhabited: " << r.inhabited << endl
+        << "Days: " << r.days << endl
+        << "Price day: " << r.priceDay << endl
+        << "Exit To Sea: " << r.exitToSea << endl
+        << "Square Balcony: " << r.sqBalcony << " m^2" << endl
+        << "Mini Bar: " << r.miniBar << endl << endl;
+    is >> r.num >> r.free >> r.number >> r.inhabited >> r.days >> r.priceDay >> r.exitToSea >> r.sqBalcony >> r.miniBar;
+    return is;
 }
