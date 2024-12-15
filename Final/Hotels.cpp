@@ -35,6 +35,9 @@ Rooms::Hotels::Hotels()
 		}
 		file.close();
 	}
+	else {
+		throw HotelException("txt not open");
+	}
 }
 
 Rooms::Hotels::~Hotels()
@@ -47,102 +50,121 @@ Rooms::Hotels::~Hotels()
 
 void Rooms::Hotels::addRoom(Room* obj)
 {
-	if (obj != nullptr)
+	if (obj->isEmpty())
 	{
 		Hotel.push_back(obj);
+	}
+	else {
+		throw HotelException("empty");
 	}
 }
 
 void Rooms::Hotels::delRoom(int i)
 {
 	i--;
-	if (!Hotel.empty())
+	if (i<Hotel.size())
 	{
-		Hotel.erase(Hotel.begin() + i);
+		if (Hotel[i]->isEmpty())
+		{
+			Hotel.erase(Hotel.begin() + i);
+		}
+	}
+	else
+	{
+		i++;
+		throw HotelException(to_string(i)+" more than the maximum");
 	}
 }
 
 void Rooms::Hotels::editRoom(int i)
 {
 	i--;
-	if (!Hotel.empty())
+	if (i < Hotel.size())
 	{
-		if (typeid(*Hotel[i]) == typeid(StandardRoom))
+		if (!Hotel.empty())
 		{
-			StandardRoom* p = dynamic_cast<StandardRoom*>(Hotel[i]);
-			if (p != nullptr)
+			if (typeid(*Hotel[i]) == typeid(StandardRoom))
 			{
-				bool free;
-				int days;
-				double priceDay;
-				cout << *p << endl << endl;
+				StandardRoom* p = dynamic_cast<StandardRoom*>(Hotel[i]);
+				if (p != nullptr)
+				{
+					bool free;
+					int days;
+					double priceDay;
+					cout << *p << endl << endl;
 
-				cout << "New Free: ";
-				cin >> free;
-				p->setFree(free);
-				cout << "New Days: ";
-				cin >> days;
-				p->setDays(days);
-				cout << "New Price Day: ";
-				cin >> priceDay;
-				p->setPriceDay(priceDay);
+					cout << "New Free: ";
+					cin >> free;
+					p->setFree(free);
+					cout << "New Days: ";
+					cin >> days;
+					p->setDays(days);
+					cout << "New Price Day: ";
+					cin >> priceDay;
+					p->setPriceDay(priceDay);
+				}
+			}
+			else if (typeid(*Hotel[i]) == typeid(SemiLuxRoom))
+			{
+				SemiLuxRoom* p = dynamic_cast<SemiLuxRoom*>(Hotel[i]);
+				if (p != nullptr)
+				{
+					bool free;
+					int days;
+					double priceDay;
+					bool miniBar;
+					cout << *p << endl << endl;
+
+					cout << "New Free: ";
+					cin >> free;
+					p->setFree(free);
+					cout << "New Days: ";
+					cin >> days;
+					p->setDays(days);
+					cout << "New Price Day: ";
+					cin >> priceDay;
+					p->setPriceDay(priceDay);
+					cout << "New Mini Bar: ";
+					cin >> miniBar;
+					p->setMiniBar(miniBar);
+				}
+
+			}
+			else if (typeid(*Hotel[i]) == typeid(LuxRoom))
+			{
+				LuxRoom* p = dynamic_cast<LuxRoom*>(Hotel[i]);
+				if (p != nullptr)
+				{
+					bool free;
+					int days;
+					double priceDay;
+					bool miniBar;
+					double wifiSpeed;
+					cout << *p << endl << endl;
+
+					cout << "New Free: ";
+					cin >> free;
+					p->setFree(free);
+					cout << "New Days: ";
+					cin >> days;
+					p->setDays(days);
+					cout << "New Price Day: ";
+					cin >> priceDay;
+					p->setPriceDay(priceDay);
+					cout << "New Mini Bar: ";
+					cin >> miniBar;
+					p->setMiniBar(miniBar);
+					cout << "New WiFi Speed: ";
+					cin >> miniBar;
+					p->setWifiSpeed(miniBar);
+				}
 			}
 		}
-		else if (typeid(*Hotel[i]) == typeid(SemiLuxRoom))
-		{
-			SemiLuxRoom* p = dynamic_cast<SemiLuxRoom*>(Hotel[i]);
-			if (p != nullptr)
-			{
-				bool free;
-				int days;
-				double priceDay;
-				bool miniBar;
-				cout << *p << endl << endl;
-
-				cout << "New Free: ";
-				cin >> free;
-				p->setFree(free);
-				cout << "New Days: ";
-				cin >> days;
-				p->setDays(days);
-				cout << "New Price Day: ";
-				cin >> priceDay;
-				p->setPriceDay(priceDay);
-				cout << "New Mini Bar: ";
-				cin >> miniBar;
-				p->setMiniBar(miniBar);
-			}
-
-		}
-		else if (typeid(*Hotel[i]) == typeid(LuxRoom))
-		{
-			LuxRoom* p = dynamic_cast<LuxRoom*>(Hotel[i]);
-			if (p != nullptr)
-			{
-				bool free;
-				int days;
-				double priceDay;
-				bool miniBar;
-				double wifiSpeed;
-				cout << *p << endl << endl;
-
-				cout << "New Free: ";
-				cin >> free;
-				p->setFree(free);
-				cout << "New Days: ";
-				cin >> days;
-				p->setDays(days);
-				cout << "New Price Day: ";
-				cin >> priceDay;
-				p->setPriceDay(priceDay);
-				cout << "New Mini Bar: ";
-				cin >> miniBar;
-				p->setMiniBar(miniBar);
-				cout << "New WiFi Speed: ";
-				cin >> miniBar;
-				p->setWifiSpeed(miniBar);
-			}
-		}
+	}
+	else
+	{
+		i++;
+		throw HotelException(to_string(i) + " more than the maximum");
 	}
 }
 
@@ -286,8 +308,11 @@ void Rooms::Hotels::searchRoom()
 		}
 		else
 		{
-			cout << "Error!!!\n";
+			throw HotelException(to_string(num) + " more than the maximum");
 		}
+	}
+	else {
+		throw HotelException("Hotel is empty");
 	}
 }
 
@@ -323,8 +348,11 @@ void Rooms::Hotels::sortRoom()
 		}
 		else
 		{
-			cout << "Error!!!\n";
+			throw HotelException(to_string(num) + " more than the maximum");
 		}
+	}
+	else {
+		throw HotelException("Hotel is empty");
 	}
 }
 
@@ -342,6 +370,9 @@ void Rooms::Hotels::printToFile()
 			}
 		}
 		file.close();
+	}
+	else {
+		throw HotelException("Hotel not open");
 	}
 }
 

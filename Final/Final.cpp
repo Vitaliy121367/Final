@@ -33,6 +33,13 @@ int main()
     R.addRoom(&b);
     R.addRoom(&c);*/
     R.showListHotel();
-    R.sortRoom();
+    try
+    {
+        R.editRoom(10);
+    }
+    catch (const HotelException& obj)
+    {
+        cout << obj.showMessage();
+    }
     R.printToFile();
 }

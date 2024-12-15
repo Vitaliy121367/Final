@@ -2,6 +2,7 @@
 #include "StandardRoom.h"
 #include "SemiLuxRoom.h"
 #include "LuxRoom.h"
+#include "RoomException.h"
 #include <vector>
 #include <algorithm>
 using namespace std;

@@ -140,6 +140,7 @@
     <ClInclude Include="Hotels.h" />
     <ClInclude Include="LuxRoom.h" />
     <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomException.h" />
     <ClInclude Include="SemiLuxRoom.h" />
     <ClInclude Include="StandardRoom.h" />
   </ItemGroup>
