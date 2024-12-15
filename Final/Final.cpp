@@ -1,5 +1,7 @@
 #include <iostream>
 #include <cmath>
+#include <vector>
+#include <algorithm>
 #include "Room.h"
 #include "StandardRoom.h"
 #include "SemiLuxRoom.h"
@@ -31,5 +33,6 @@ int main()
     R.addRoom(&b);
     R.addRoom(&c);*/
     R.showListHotel();
+    R.sortRoom();
     R.printToFile();
 }

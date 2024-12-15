@@ -17,6 +17,8 @@ namespace Rooms
 		void addRoom(Room* obj);
 		void delRoom(int i);
 		void editRoom(int i);
+		void searchRoom();
+		void sortRoom();
 		void printToFile();
 		void showListHotel()const;
 	};

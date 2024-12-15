@@ -72,7 +72,7 @@ ostream& Rooms::operator<<(ostream& os, const StandardRoom& r)
 		<< "Evicted: " << r.inhabited + r.days << endl
 		<< "Days: " << r.days << endl
 		<< "Price day: " << r.priceDay << endl
-		<< "Exit To Sea: " << r.exitToSea << endl << endl;
+		<< "Exit To Sea: " << r.exitToSea << endl;
 	return os;
 }
 

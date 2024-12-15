@@ -22,12 +22,9 @@ bool Rooms::SemiLuxRoom::getMiniBar() const
     return miniBar;
 }
 
-void Rooms::SemiLuxRoom::setSqBalcony(double sqBalcony)
+void Rooms::SemiLuxRoom::setMiniBar(bool miniBar)
 {
-    if (sqBalcony>=0)
-    {
-        this->sqBalcony = sqBalcony;
-    }
+    this->miniBar = miniBar;
 }
 
 bool Rooms::SemiLuxRoom::isEmpty() const
@@ -105,7 +102,7 @@ ostream& Rooms::operator<<(ostream& os, const SemiLuxRoom& r)
         << "Exit To Sea: " << (r.getExitToSea() ? "Yes" : "No") << endl
         << "Square Balcony: " << r.sqBalcony << " m^2" << endl
         << "Mini Bar: " << (r.miniBar ? "Yes" : "No") << endl
-        << "Free: " << (r.free ? "Yes" : "No") << endl << endl;
+        << "Free: " << (r.free ? "Yes" : "No") << endl;
     return os;
 }
 

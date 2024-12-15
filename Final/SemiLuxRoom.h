@@ -18,7 +18,7 @@ namespace Rooms
 		double getSqBalcony()const;
 		bool getMiniBar()const;
 
-		void setSqBalcony(double sqBalcony);
+		void setMiniBar(bool miniBar);
 
 		virtual bool isEmpty()const override;
 		virtual void infoFile(ofstream& file)const override;

@@ -28,6 +28,11 @@ Rooms::Room::~Room()
 {
 }
 
+int Rooms::Room::getId() const
+{
+    return id;
+}
+
 int Rooms::Room::getNum() const
 {
     return num;

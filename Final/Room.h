@@ -22,6 +22,7 @@ namespace Rooms {
 		Room(int num, bool free, int number, Date inhabited, int days, double priceDay);
 		virtual ~Room();
 
+		int getId()const;
 		int getNum()const;
 		int getFree()const;
 		int getNumber()const;
