@@ -42,10 +42,7 @@ Rooms::Hotels::Hotels()
 
 Rooms::Hotels::~Hotels()
 {
-	for (int i = 0; i < Hotel.size(); i++)
-	{
-		delete Hotel[i];
-	}
+	Hotel.erase(Hotel.begin(),Hotel.end());
 }
 
 void Rooms::Hotels::addRoom(Room* obj)
@@ -72,7 +69,7 @@ void Rooms::Hotels::delRoom(int i)
 	else
 	{
 		i++;
-		throw HotelException(to_string(i)+" more than the maximum");
+		throw HotelException(to_string(i)+" does not meet the limits");
 	}
 }
 
@@ -164,7 +161,28 @@ void Rooms::Hotels::editRoom(int i)
 	else
 	{
 		i++;
-		throw HotelException(to_string(i) + " more than the maximum");
+		throw HotelException(to_string(i) + " does not meet the limits");
+	}
+}
+
+void Rooms::Hotels::buyReleaseRoom(int i)
+{
+	i--; 
+	if (i < Hotel.size())
+	{
+		if (Hotel[i]->getFree())
+		{
+			Hotel[i]->setFree(0);
+		}
+		else
+		{
+			Hotel[i]->setFree(1);
+		}
+	}
+	else
+	{
+		i++;
+		throw HotelException(to_string(i) + " does not meet the limits");
 	}
 }
 
@@ -191,16 +209,23 @@ void Rooms::Hotels::searchRoom()
 		{
 			cout << "Id: ";
 			cin >> num;
-			for (int i = 0; i < Hotel.size(); i++)
+			if (num>0&&num<Hotel.size())
 			{
-				if (Hotel[i]->getId() == num && Hotel[i]->isEmpty())
+				for (int i = 0; i < Hotel.size(); i++)
 				{
-					Hotel[i]->showInfo();
-					cout << endl;
-					return;
+					if (Hotel[i]->getId() == num && Hotel[i]->isEmpty())
+					{
+						Hotel[i]->showInfo();
+						cout << endl;
+						return;
+					}
 				}
+				cout << "Not fiund\n";
 			}
-			cout << "Not fiund\n";
+			else
+			{
+				throw HotelException(to_string(num) + " does not meet the limits");
+			}
 		}
 		else if (num == 2)
 		{
@@ -308,7 +333,7 @@ void Rooms::Hotels::searchRoom()
 		}
 		else
 		{
-			throw HotelException(to_string(num) + " more than the maximum");
+			throw HotelException(to_string(num) + " does not meet the limits");
 		}
 	}
 	else {
@@ -325,6 +350,7 @@ void Rooms::Hotels::sortRoom()
 		cout << "|   1 - Date               |\n";
 		cout << "|   2 - Full Price         |\n";
 		cout << "|   3 - Days               |\n";
+		cout << "|   4 - Free               |\n";
 		cout << "+--------------------------+\n";
 		cout << "Num: ";
 		cin >> num;
@@ -346,9 +372,15 @@ void Rooms::Hotels::sortRoom()
 				return a->getDays() < b->getDays();
 				});
 		}
+		else if (num == 4)
+		{
+			sort(Hotel.begin(), Hotel.end(), [](Room* a, Room* b) {
+				return a->getFree() < b->getFree();
+				});
+		}
 		else
 		{
-			throw HotelException(to_string(num) + " more than the maximum");
+			throw HotelException(to_string(num) + " does not meet the limits");
 		}
 	}
 	else {
