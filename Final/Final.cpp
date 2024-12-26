@@ -2,6 +2,7 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
+#include <string>
 #include "Room.h"
 #include "StandardRoom.h"
 #include "SemiLuxRoom.h"
