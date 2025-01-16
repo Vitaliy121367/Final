@@ -363,7 +363,7 @@ void Rooms::Hotels::sortRoom()
 		else if (num == 2)
 		{
 			sort(Hotel.begin(), Hotel.end(), [](Room* a, Room* b) {
-				return a->getFullPrice() < b->getFullPrice();
+				return a->getFullPrice() > b->getFullPrice();
 				});
 		}
 		else if (num == 3)
